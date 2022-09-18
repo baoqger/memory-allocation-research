@@ -19,8 +19,14 @@ int main()
         printf("Welcome to private anonymous mapping example::PID:%d\n", getpid());
         printf("Before mmap\n");
         getchar();
+        int fd = open("./test/test.txt", O_RDONLY, S_IRUSR | S_IWUSR);
+        struct stat sb; 
+        if (fstat(fd, &sb) == -1) {
+            perror("couldn't get file size.\n");
+        }
+        printf("file szie is %ld\n", sb.st_size);
         char* addr = NULL;
-        addr = mmap(NULL, (size_t)132*1024, PROT_READ|PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+        addr = mmap(NULL, sb.st_size, PROT_READ|PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, fd, 0);
         if (addr == MAP_FAILED)
                 errExit("mmap");
         printf("mmap allocated address:%p\n", addr);
