@@ -1,0 +1,4 @@
+break *0x00005555555552b8
+break *0x00005555555552c6
+break /home/baoqger/develop/open-source/memory-allocation-research/crackme0x00.c:22
+
