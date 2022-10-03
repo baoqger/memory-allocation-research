@@ -11,8 +11,8 @@ int main(int argc, char *argv[]) {
     setvbuf(stdout, NULL, _IONBF, 0);
     setvbuf(stdin, NULL, _IONBF, 0);
 
-    char *buf = (char*)malloc(100); 
-    char *secret = (char*)malloc(100);
+    char *buf = (char*)malloc(200); 
+    char *secret = (char*)malloc(200);
 
     strcpy(secret, password);
     printf("IOLI Crackme Level 0x00\n");
@@ -25,5 +25,7 @@ int main(int argc, char *argv[]) {
     } else {
         printf("Invalid password! %s\n", buf);
     }
+    free(buf);
+    free(secret);
     return 0;
 }
